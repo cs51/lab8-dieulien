@@ -225,15 +225,15 @@ waiting for the publish event.
 
 let receive_report s = 
   let open WEvent in
-  add_listener publish (fun () -> fakeNewsNetwork s) ;
-  add_listener publish (fun () -> buzzFake s);;
+  ignore (add_listener publish (fun () -> fakeNewsNetwork s)) ;
+  ignore (add_listener publish (fun () -> buzzFake s)) ;;
 
 (*......................................................................
 Exercise 10: Register the receieve_report listener to listen for the
 newswire event.
 ......................................................................*)
 
-(* .. *)
+WEvent.add_listener newswire receive_report ;;
 
 (* Here are some new headlines to use for testing this part. *)
 
